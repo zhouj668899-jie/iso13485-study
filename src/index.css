@@ -1,0 +1,259 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors — Auros Liquid Teal scale */
+  --color-liquid-abyss: #012624;
+  --color-liquid-deep: #011d1c;
+  --color-liquid-kelp: #003734;
+  --color-liquid-mist: #edfffe;
+  --color-platinum: #ffffff;
+  --color-silver-mist: #bbc7c6;
+  --color-ash: #f2f2f2;
+  --color-slate-deep: #707777;
+  --color-lavender-phosphor: #fde9ff;
+  --color-bioluminescent-gradient: #00827c;
+  --color-aurora-gradient: #cbfffc;
+
+  /* Typography — 圆润字体栈：Nunito(拉丁) + 苹果圆体/圆黑(中文) */
+  --font-matter: 'Nunito', ui-rounded, 'PingFang SC', 'Yuanti SC', 'YouYuan', 'Microsoft YaHei', ui-sans-serif, system-ui, sans-serif;
+  --font-arial: 'Nunito', ui-rounded, 'PingFang SC', 'Yuanti SC', ui-sans-serif, system-ui, sans-serif;
+
+  /* Type scale */
+  --text-caption: 10px;
+  --text-body: 16px;
+  --text-subheading: 24px;
+  --text-heading: 36px;
+  --text-heading-lg: 61px;
+  --text-display: 96px;
+
+  /* Spacing extensions */
+  --spacing-68: 68px;
+  --spacing-120: 120px;
+  --spacing-140: 140px;
+  --spacing-160: 160px;
+
+  /* Radii — 圆润升级 */
+  --radius-md: 12px;
+  --radius-2xl: 24px;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-liquid-abyss);
+    color: var(--color-silver-mist);
+    font-family: var(--font-matter);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-platinum);
+    font-weight: 500;
+    line-height: 1.0;
+  }
+  ::selection { background: rgba(0, 130, 124, 0.45); color: #ffffff; }
+}
+
+@layer components {
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-silver-mist);
+  }
+  .btn-aurora {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(90deg, rgb(203, 255, 252) 0%, rgb(237, 255, 254) 26.25%, rgb(255, 253, 250) 47.57%, rgb(250, 209, 255) 88.96%);
+    background-size: 160% 100%;
+    color: #1c2321;
+    border-radius: 999px;
+    padding: 15px 32px;
+    font-family: var(--font-arial);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-position 0.6s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-aurora::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+  }
+  .btn-aurora:hover {
+    background-position: 100% 0;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 0 32px rgba(250, 209, 255, 0.35), 0 0 64px rgba(0, 130, 124, 0.25);
+  }
+  .btn-aurora:hover::after { left: 130%; }
+  .btn-aurora:active { transform: translateY(0) scale(0.99); }
+  .btn-kelp {
+    background: var(--color-liquid-kelp);
+    color: #ffffff;
+    border-radius: 999px;
+    padding: 13px 26px;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .btn-kelp:hover {
+    background: #004a45;
+    transform: translateY(-2px);
+    box-shadow: 0 0 24px rgba(0, 130, 124, 0.3);
+  }
+  .display-h1 {
+    font-size: clamp(3rem, 8.5vw, 6.5rem);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  /* 标题流光 —— 白→aqua→粉 缓慢流动 */
+  .shimmer-text {
+    background: linear-gradient(110deg, #ffffff 0%, #ffffff 34%, #cbfffc 46%, #fad1ff 55%, #ffffff 68%, #ffffff 100%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer-flow 7s ease-in-out infinite;
+  }
+  @keyframes shimmer-flow {
+    0%, 100% { background-position: 120% 0; }
+    50% { background-position: -20% 0; }
+  }
+  .display-h2 {
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  /* Oversized kinetic text — 环境级巨型文字 */
+  .kinetic-text {
+    font-size: clamp(5rem, 16vw, 15rem);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    user-select: none;
+  }
+  /* 深海氛围光 —— teal→pink 生物荧光，缓慢呼吸漂移 */
+  .abyss-glow {
+    position: absolute;
+    inset: -10%;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 45% at 72% 38%, rgba(0, 130, 124, 0.22) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 32% at 82% 30%, rgba(250, 209, 255, 0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 40% at 18% 82%, rgba(1, 55, 52, 0.55) 0%, transparent 70%);
+    animation: glow-drift 14s ease-in-out infinite alternate;
+  }
+  @keyframes glow-drift {
+    0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.9; }
+    50% { transform: translate3d(-2%, 1.5%, 0) scale(1.05); opacity: 1; }
+    100% { transform: translate3d(2%, -1.5%, 0) scale(1.02); opacity: 0.85; }
+  }
+  /* 细线分隔 —— 仪器面板感 */
+  .hairline { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+  .surface-card {
+    background: var(--color-liquid-kelp);
+    border-radius: 24px;
+    padding: 36px;
+  }
+  .recessed-card {
+    background: var(--color-liquid-deep);
+    border-radius: 24px;
+    padding: 48px;
+  }
+  /* 卡片悬浮 —— 边缘微光 + 抬升 */
+  .lift-card {
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, background 0.45s ease;
+  }
+  .lift-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 0 1px rgba(203, 255, 252, 0.10), 0 12px 48px rgba(0, 0, 0, 0.35), 0 0 48px rgba(0, 130, 124, 0.12);
+  }
+
+  /* ======== 滚动进场 reveal 系统 ======== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(36px) scale(0.99);
+    filter: blur(6px);
+    transition:
+      opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.9s ease;
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform, filter;
+  }
+  .reveal.is-inview {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  /* 首屏入场（不依赖滚动） */
+  .enter-up {
+    animation: enter-up 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--enter-delay, 0ms);
+  }
+  @keyframes enter-up {
+    from { opacity: 0; transform: translateY(44px); filter: blur(8px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  /* 巨型文字水平漂移（随滚动由 JS 驱动 --kx） */
+  .kinetic-track { transform: translate3d(var(--kx, 0px), 0, 0); will-change: transform; }
+  /* 滚动提示浮动 */
+  .float-hint { animation: float-y 2.6s ease-in-out infinite; }
+  @keyframes float-y {
+    0%, 100% { transform: translateY(0); opacity: 0.55; }
+    50% { transform: translateY(7px); opacity: 0.95; }
+  }
+  /* 分子图缓慢自旋漂浮 */
+  .molecule-float { animation: molecule-sway 9s ease-in-out infinite alternate; }
+  @keyframes molecule-sway {
+    from { transform: translateY(-8px) rotate(-2deg); }
+    to { transform: translateY(8px) rotate(2.5deg); }
+  }
+  /* 路由切换淡入 */
+  .page-enter { animation: page-fade 0.55s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  @keyframes page-fade {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .enter-up, .abyss-glow, .float-hint, .molecule-float, .shimmer-text, .page-enter {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-liquid-deep); }
+::-webkit-scrollbar-thumb { background: #03534d; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #04756c; }
