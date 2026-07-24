@@ -47,10 +47,17 @@ export function ArrowIconButton({
         {inner}
       </Link>
     )
+  if (onClick)
+    return (
+      <button onClick={onClick} className={cls} title={title} aria-label={title}>
+        {inner}
+      </button>
+    )
+  // 既无 to 也无 onClick 时作为纯装饰元素（避免在 Link 内嵌套 Link/button）
   return (
-    <button onClick={onClick} className={cls} title={title} aria-label={title}>
+    <span className={cls} title={title} aria-label={title}>
       {inner}
-    </button>
+    </span>
   )
 }
 

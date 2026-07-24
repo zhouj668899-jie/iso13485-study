@@ -197,7 +197,6 @@ export default function Home() {
                       </div>
                     </div>
                     <ArrowIconButton
-                      to={f.to}
                       title={f.label}
                       className="shrink-0 group-hover:bg-[rgba(3,81,75,0.9)] transition-transform duration-500 group-hover:rotate-45 group-hover:scale-110"
                     />
